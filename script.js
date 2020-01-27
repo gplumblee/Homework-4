@@ -15,25 +15,14 @@ let questions = [
   "String values must be enclosed within _____ when being assign to variables.",
   "A useful tool used during development and debugging for printing content to the debugger is:"
 ];
-let answers = [
+let multChoice = [
   ["1. string", "2. booleans", "3. alerts", "4. numbers"],
   ["1. quotes", "2. curly brackets", "3. parentheses", "4. square brackets"],
-  [
-    "1. numbers and strings",
-    "2. other arrays",
-    "3. booleans",
-    "4. all of the above"
-  ],
+  ["1. numbers and strings", "2. other arrays", "3. booleans", "4. all of the above"],
   ["1. commas", "2. curly brackets", "3. quotes", "4. parentheses"],
   ["1. JavaScript", "2. terminal/bash", "3. for loops", "4. console.log"]
 ];
-let correct = [
-  "3. alerts",
-  "3. parentheses",
-  "4. all of the above",
-  "3. quotes",
-  "4. console.log"
-];
+let corrAnswrs = ["a3", "a3", "a4", "a3", "a4"];
 
 let counter = 60;
 
@@ -55,8 +44,11 @@ start.addEventListener("click", function() {
 });
 
 function askQuestion() {
-  for (let i = 0; i < questions.length; i++) {
-    currentQuestion(i);
+  let i = 0;
+  currentQuestion[i];
+  let currentAnswr = document.getElementById(corrAnswrs[i]);
+  if (!currentAnswr.addEventListener("click")) {
+    counter -= 10;
   }
 }
 
@@ -64,10 +56,10 @@ function askQuestion() {
 
 function currentQuestion(index) {
   document.getElementById("question").textContent = questions[index];
-  document.getElementById("a1").textContent = answers[index][0];
-  document.getElementById("a2").textContent = answers[index][1];
-  document.getElementById("a3").textContent = answers[index][2];
-  document.getElementById("a4").textContent = answers[index][3];
+  document.getElementById("a1").textContent = multChoice[index][0];
+  document.getElementById("a2").textContent = multChoice[index][1];
+  document.getElementById("a3").textContent = multChoice[index][2];
+  document.getElementById("a4").textContent = multChoice[index][3];
 }
 // While counter is greater than 0:
 //   Ask current question starting with index 0

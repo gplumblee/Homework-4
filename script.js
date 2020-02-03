@@ -9,7 +9,7 @@
 //     after last question, stop the timer
 // If timer reaches 0 before questions are answer, display "You Lost!" message.
 
-let mainQuestions = [
+let quiz = [
   {
     question: "Commonly used data types DO NOT include:",
     choices: [
@@ -80,26 +80,27 @@ function startTimer() {
 let start = document.getElementById("start");
 start.addEventListener("click", function() {
   startTimer();
-  for (let i = 0; i < mainQuestions.length; i++) {
+  for (let i = 0; i < quiz.length; i++) {
     askQuestion(i);
   }
 });
 
-function askQuestion() {
-  currentQuestion(i);
-  if (!currentAnswr.addEventListener("click")) {
+function askQuestion(num) {
+  document.getElementById("question").textContent = quiz[num].question;
+  document.getElementById("choice1").textContent = quiz[num].choices[0];
+  document.getElementById("choice2").textContent = quiz[num].choices[1];
+  document.getElementById("choice3").textContent = quiz[num].choices[2];
+  document.getElementById("choice4").textContent = quiz[num].choices[3];
+  let correct = quiz[i].choices[quiz[i].answer];
+  if (!correct.addEventListener("click")) {
     counter -= 10;
   }
 }
 
 // Create a button for each answer (four buttons)
 
-function currentQuestion(index) {
-  document.getElementById("question").textContent = mainQuestions[index].question;
-  document.getElementById("choice1").textContent = mainQuestions[index].choices[0];
-  document.getElementById("choice2").textContent = mainQuestions[index].choices[1];
-  document.getElementById("choice3").textContent = mainQuestions[index].choices[2];
-  document.getElementById("choice4").textContent = mainQuestions[index].choices[3];
+function currentQuestion(num) {
+  
 }
 // While counter is greater than 0:
 //   Ask current question starting with index 0

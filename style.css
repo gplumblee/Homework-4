@@ -1,26 +1,36 @@
-* {
-}
-
-#timer {
-    text-align: right;
-}
-
-#start {
+#title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
     text-align: center;
+    margin-bottom: 30px;
 }
 
-h1 {
-    text-align: center;
+.list-group-item {
+    background-color: #7fb3b3;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.highlight {
+}
+
+body {
+    font-size: large;
+}
+
+#question {
+    margin-bottom: 20px;
+}
+
+.container {
+    width: auto;
 }
 
 .btn {
-    text-align: center;
-}
-
-.btn-sm {
-    margin: 5px;
-}
-
-content {
-    text-align: center;
+    background-color: #7fb3b3;
+    color: white;
+    align-content: center;
+    width: 100px;
+    text-transform: uppercase;
+    margin: 10px;  
 }

@@ -1,21 +1,9 @@
-// Write some questions and answers
-// When click is clicked, start timer at 60 seconds. (Every second will update the counter on the screen.)
-// For each question:
-//     ask the question
-//     display possible answers
-//     get player choice by click
-//     if wrong, subtract 5 seconds
-//     go to next question
-//     after last question, stop the timer
-// If timer reaches 0 before questions are answer, display "You Lost!" message.
-
-let quiz = [
-  {
+let quiz = [{
     question: "Commonly used data types DO NOT include:",
     choices: [
-      "1. string", 
-      "2. booleans", 
-      "3. alerts", 
+      "1. string",
+      "2. booleans",
+      "3. alerts",
       "4. square"
     ],
     answer: 2
@@ -41,19 +29,17 @@ let quiz = [
     answer: 3
   },
   {
-    question:
-      "String values must be enclosed within _____ when being assign to variables.",
+    question: "String values must be enclosed within _____ when being assign to variables.",
     choices: [
-      "1. commas", 
-      "2. curly brackets", 
-      "3. quotes", 
+      "1. commas",
+      "2. curly brackets",
+      "3. quotes",
       "4. parentheses"
     ],
     answer: 2
   },
   {
-    question:
-      "A useful tool used during development and debugging for printing content to the debugger is:",
+    question: "A useful tool used during development and debugging for printing content to the debugger is:",
     choices: [
       "1. JavaScript",
       "2. terminal/bash",
@@ -62,51 +48,87 @@ let quiz = [
     ],
     answer: 3
   }
-];
+  ];
 
-let counter = 60;
-let timerDiv = document.getElementById("timer");
-timerDiv.textContent = "Timer: " + counter;
-
-function startTimer() {
-  let clock = setInterval(function() {
-    counter--;
-    if (counter === 0) {
-      clearInterval(clock);
-    }
-  }, 1000);
-}
-
-let start = document.getElementById("start");
-start.addEventListener("click", function() {
-  startTimer();
-  for (let i = 0; i < quiz.length; i++) {
-    askQuestion(i);
-  }
-});
-
-function askQuestion(num) {
-  document.getElementById("question").textContent = quiz[num].question;
-  document.getElementById("choice1").textContent = quiz[num].choices[0];
-  document.getElementById("choice2").textContent = quiz[num].choices[1];
-  document.getElementById("choice3").textContent = quiz[num].choices[2];
-  document.getElementById("choice4").textContent = quiz[num].choices[3];
-  let correct = quiz[i].choices[quiz[i].answer];
-  if (!correct.addEventListener("click")) {
-    counter -= 10;
-  }
-}
-
-// Create a button for each answer (four buttons)
-
-function currentQuestion(num) {
+  let highscores = JSON.parse(localStorage.getItem('score')) || [];
+  let clock;
+  let index = 0;
+  let score = 0;
   
-}
-// While counter is greater than 0:
-//   Ask current question starting with index 0
-//   When answer button is clicked:
-//     if correct, add 1 to current question
-//     if incorrect, subtract 10 from counter and repeat loop
-//   When all questions are asked, stop timer and display score.
+  highscores.forEach(score=>{
+    $("#scores").append(`<h3>${score}</h3>`);
+  })
+  
+  let count = 60;
+  $("#timer").text(`Timer: ${count}`);
+  let header = "Coding Quiz Challenge";
+  $("#title").text(`${header}`);
+  let directions = "Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score time by ten seconds!";
+  $("#text").text(`${directions}`);
+  $("#text").append(`<div class="text-center"><button type="button" class="btn btn-primary">Start</button></div>`);
 
-// see Week 02/Day 05/Activity 18 for seeing what button user selects
+  function startTimer() {
+    clock = setInterval(function () {
+      count--;
+      $("#timer").text(`Timer: ${count}`)
+      if (count === 0) {
+        clearInterval(clock);
+        endGame()
+      }
+    }, 1000);
+    }
+
+    function askQuestion(num) {
+      $('#question').empty();
+      $('#answers').empty();
+      $("#question").text(`${quiz[num].question}`);
+      $("#answers").append(`<li class="list-group-item" id=${0}>${quiz[num].choices[0]}</li>`);
+      $("#answers").append(`<li class="list-group-item" id=${1}>${quiz[num].choices[1]}</li>`);
+      $("#answers").append(`<li class="list-group-item" id=${2}>${quiz[num].choices[2]}</li>`);
+      $("#answers").append(`<li class="list-group-item" id=${3}>${quiz[num].choices[3]}</li>`);
+      }
+    
+      $(document).on("click",'li', function() {
+        if($(this).text()[0] == quiz[index].answer +1) {
+          index++;
+          alert('RIGHT!');
+          if(index!==quiz.length){
+            askQuestion(index)
+          }else{
+            endGame()
+          }
+          
+        }else{
+          count -= 10;
+          alert('WRONG!');
+        }
+        
+      })
+
+      endGame = () =>{
+        clearInterval(clock);
+        score = count;
+        $('#question').empty();
+        $('#answers').empty();  
+        $('#title').text(`GAME OVER! YOUR SCORE IS ${score}!`)
+        $('#question').append(`<h3>Enter Your Initials</h3><input id='initials'/><button id='submit'>Submit</button>`)
+        $('#answers')
+      }
+
+      $(document).on('click', '#submit', function(){
+        highscores.push(`${score} - ${$('#initials').val().trim()}`)
+        localStorage.setItem('score', JSON.stringify(highscores))
+      })
+
+    $("button").on("click", function() {
+    startTimer();
+    $("#text").text("");
+    askQuestion(index);
+  
+    });
+
+    // let correct = quiz[i].choices[quiz[i].answer];
+    // if (!correct.addEventListener("click")) {
+    //   count -= 10;
+    // } else {
+    // }

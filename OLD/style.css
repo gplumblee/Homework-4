@@ -1,0 +1,26 @@
+* {
+}
+
+#timer {
+    text-align: right;
+}
+
+#start {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+.btn {
+    text-align: center;
+}
+
+.btn-sm {
+    margin: 5px;
+}
+
+content {
+    text-align: center;
+}

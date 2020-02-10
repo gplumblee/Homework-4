@@ -11,7 +11,14 @@
     margin-bottom: 10px;
 }
 
-.highlight {
+#scores ul {
+    padding-left: 0px;
+}
+
+#scores li {
+    background-color: transparent;
+    color: black;
+    margin-bottom: auto;
 }
 
 body {

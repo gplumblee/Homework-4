@@ -1,35 +1,46 @@
-# Homework-4
-Multiple Choice Quiz
+# 05 Third-Party APIs: Work Day Scheduler
 
-Pseudocode:
-Write some questions and answers
+Create a simple calendar application that allows the user to save events for each hour of the day. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
 
-When start button is clicked, count down from 60 seconds. (Every second will update the counter on the screen.)
+You'll need to use the [Moment.js](https://momentjs.com/) library to work with date and time. Be sure to read the documentation carefully and concentrate on using Moment.js in the browser.
 
-For each question:
-    ask the question
-    display possible answers
-    get player choice by click
-    if wrong, subtract 5 seconds
-    go to next question
-    after last question, stop the timer
+## User Story
 
-If timer reaches 0 before questions are answer, display "You Lost!" message.
+```
+AS AN employee with a busy schedule
+I WANT to add important events to a daily planner
+SO THAT I can manage my time effectively
+```
 
-Create an array of the five questions (strings).
-Create an array of multiple choices (array of strings) for each question.
-Then create an array of five correct answers (strings) that match one multiple choice string from each array.
+## Acceptance Criteria
 
-Set a counter variable to 60.
+```
+GIVEN I am using a daily planner to create a schedule
+WHEN I open the planner
+THEN the current day is displayed at the top of the calendar
+WHEN I scroll down
+THEN I am presented with timeblocks for standard business hours
+WHEN I view the timeblocks for that day
+THEN each timeblock is color coded to indicate whether it is in the past, present, or future
+WHEN I click into a timeblock
+THEN I can enter an event
+WHEN I click the save button for that timeblock
+THEN the text for that event is saved in local storage
+WHEN I refresh the page
+THEN the saved events persist
+```
 
-Create a timer function that counts down to zero and stops.
+The following animation demonstrates the application functionality:
 
-HTML should have a button with a "start" ID that triggers the timer function.
+![day planner demo](./Assets/05-third-party-apis-homework-demo.gif)
 
-Create a function to go through the array of questions one by one, show the question along with the four answers. Each answer will be a button. Question will have ID tag of "question" and the four buttons will have  ID tags "a1", "a2", "a3", and "a4." Create a function called currentQuestion to assign the text content from the question and answer arrays.
+## Review
 
-If user does not select the correct answer, subtract ten seconds from the timer. When correct answer is selected, go on to the next question.
+You are required to submit the following for review:
 
-When questions are completed, stop the timer and display time as the score.
+* The URL of the deployed application.
 
+* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
 
+- - -
+© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
